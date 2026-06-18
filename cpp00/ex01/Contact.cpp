@@ -1,6 +1,20 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   Contact.cpp                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mcardoso <mcardoso@student.42lisboa.com    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/06/18 16:32:22 by mcardoso          #+#    #+#             */
+/*   Updated: 2026/06/18 17:09:07 by mcardoso         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "Contact.hpp"
 
 Contact::Contact(){}
+
+Contact::~Contact(){}
 
 std::string	Contact::getFirst() {
 	return firstname;
@@ -15,11 +29,11 @@ std::string	Contact::getNick() {
 }
 
 std::string	Contact::getNumber() {
-	return phonenumber;
+	return number;
 }
 
 std::string	Contact::getSecret() {
-	return darkestsecret;
+	return secret;
 }
 
 void	Contact::setFirst(const std::string& firstname) {
@@ -35,9 +49,9 @@ void	Contact::setNick(const std::string& nickname) {
 }
 
 void	Contact::setNumber(const std::string& phonenumber) {
-	this->phonenumber = phonenumber;
+	this->number = phonenumber;
 }
 
-void	Contact::setSecret(const std::string& darkestsecret) {
-	this->darkestsecret = darkestsecret;
+void	Contact::setSecret(const std::string& secret) {
+	this->secret = secret;
 }
