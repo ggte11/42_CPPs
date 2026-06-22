@@ -6,7 +6,7 @@
 /*   By: mcardoso <mcardoso@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/18 16:32:11 by mcardoso          #+#    #+#             */
-/*   Updated: 2026/06/18 18:44:40 by mcardoso         ###   ########.fr       */
+/*   Updated: 2026/06/22 16:32:42 by mcardoso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,17 +27,21 @@ void	Phonebook::addContact() {
 	bool		valid;
 
 	std::cout << "First name: ";
-	std::getline(std::cin, input);
+	if (!std::getline(std::cin, input))
+			return ;
 	Contacts[index].setFirst(input);
 	std::cout << "Last name: ";
-	std::getline(std::cin, input);
+	if (!std::getline(std::cin, input))
+			return ;
 	Contacts[index].setLast(input);
 	std::cout << "Nickname: ";
-	std::getline(std::cin, input);
+	if (!std::getline(std::cin, input))
+			return ;
 	Contacts[index].setNick(input);
 	while (true) {
 		std::cout << "Phone Number: ";
-		std::getline(std::cin, input);
+		if (!std::getline(std::cin, input))
+			return ;
 		valid = true;
 		if (input.length() != 9)
 			valid = false;
@@ -54,7 +58,8 @@ void	Phonebook::addContact() {
 	}
 	Contacts[index].setNumber(input);
 	std::cout << "Darkest secret: ";
-	std::getline(std::cin, input);
+	if (!std::getline(std::cin, input))
+			return ;
 	Contacts[index].setSecret(input);
 	index = (index + 1) % 8;
 	if (total < 8)
