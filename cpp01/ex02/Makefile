@@ -1,8 +1,8 @@
-NAME = Moar_brainz
+NAME =  HI_THIS_IS_BRAIN
 CXX = c++
 CXXFLAGS = -Wall -Wextra -Werror -std=c++98
 
-SRCS = Zombie.cpp main.cpp zombieHorde.cpp
+SRCS = main.cpp
 OBJS = $(SRCS:.cpp=.o)
 
 all: $(NAME)

@@ -1,8 +1,8 @@
-NAME = Moar_brainz
+NAME = Unnecessary_violence
 CXX = c++
 CXXFLAGS = -Wall -Wextra -Werror -std=c++98
 
-SRCS = Zombie.cpp main.cpp zombieHorde.cpp
+SRCS = randomChump.cpp newZombie.cpp main.cpp Zombie.cpp
 OBJS = $(SRCS:.cpp=.o)
 
 all: $(NAME)
