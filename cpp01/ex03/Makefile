@@ -2,7 +2,7 @@ NAME = Unnecessary_violence
 CXX = c++
 CXXFLAGS = -Wall -Wextra -Werror -std=c++98
 
-SRCS = randomChump.cpp newZombie.cpp main.cpp Zombie.cpp
+SRCS = HumanA.cpp HumanB.cpp main.cpp Weapon.cpp
 OBJS = $(SRCS:.cpp=.o)
 
 all: $(NAME)
