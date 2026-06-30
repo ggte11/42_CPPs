@@ -1,8 +1,8 @@
-NAME = Sed_is_for_losers
+NAME = Harl_2.0
 CXX = c++
 CXXFLAGS = -Wall -Wextra -Werror -std=c++98
 
-SRCS = main.cpp find_replace.cpp
+SRCS = main.cpp Harl.cpp
 OBJS = $(SRCS:.cpp=.o)
 
 all: $(NAME)
