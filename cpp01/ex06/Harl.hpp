@@ -11,9 +11,9 @@ private:
 	void info(void);
 	void warning(void);
 	void error(void);
+	const static std::string types[4];
 public:
 	Harl();
-	~Harl();
 	void complain(std::string level);
 };
 

@@ -1,19 +1,11 @@
 #include "Harl.hpp"
 
-int main()
+int main(int argc, char **argv)
 {
 	Harl harl;
-	std::string level;
 
-	std::cout << "Choose an option!\n";
-	std::cout << "DEBUG:\n";
-	std::cout << "INFO:\n";
-	std::cout << "WARNING:\n";
-	std::cout << "ERROR:\n\n";
-
-	while (getline(std::cin, level)) {
-		harl.complain(level);
-		break ;
-	}
-	return 0;
+	if (argc == 2)
+		harl.complain(argv[1]);
+	else
+		std::cout << "[ Probably complaining about insignificant problems ]" << std::endl;
 }
