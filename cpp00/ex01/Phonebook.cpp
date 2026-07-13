@@ -6,7 +6,7 @@
 /*   By: mcardoso <mcardoso@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/18 16:32:11 by mcardoso          #+#    #+#             */
-/*   Updated: 2026/07/13 12:11:27 by mcardoso         ###   ########.fr       */
+/*   Updated: 2026/07/13 12:22:16 by mcardoso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,17 +39,32 @@ void	Phonebook::addContact() {
 	std::string	input;
 	bool		valid;
 
-	std::cout << "First name: ";
-	if (!std::getline(std::cin, input))
+	while (true) {
+		std::cout << "First name: ";
+		if (!std::getline(std::cin, input))
 			return ;
+		if (!input.empty())
+			break ;
+		std::cout << "Field cannot be empty.\n";
+	}
 	Contacts[index].setFirst(input);
-	std::cout << "Last name: ";
-	if (!std::getline(std::cin, input))
+	while (true) {
+		std::cout << "Last name: ";
+		if (!std::getline(std::cin, input))
 			return ;
+		if (!input.empty())
+			break ;
+		std::cout << "Field cannot be empty.\n";
+	}
 	Contacts[index].setLast(input);
-	std::cout << "Nickname: ";
-	if (!std::getline(std::cin, input))
+	while (true) {
+		std::cout << "Nickname: ";
+		if (!std::getline(std::cin, input))
 			return ;
+		if (!input.empty())
+			break ;
+		std::cout << "Field cannot be empty.\n";
+	}
 	Contacts[index].setNick(input);
 	while (true) {
 		std::cout << "Phone Number: ";
@@ -68,11 +83,17 @@ void	Phonebook::addContact() {
 		}
 		if (valid)
 			break ;
+		std::cout << "Phone number must contain exactly 9 digits.\n";
 	}
 	Contacts[index].setNumber(input);
-	std::cout << "Darkest secret: ";
-	if (!std::getline(std::cin, input))
+	while (true) {
+		std::cout << "Darkest secret: ";
+		if (!std::getline(std::cin, input))
 			return ;
+		if (!input.empty())
+			break ;
+		std::cout << "Field cannot be empty.\n";
+	}
 	Contacts[index].setSecret(input);
 	index = (index + 1) % 8;
 	if (total < 8)
