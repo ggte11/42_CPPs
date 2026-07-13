@@ -45,7 +45,7 @@ void ClapTrap::attack(const std::string &target) {
 
 void ClapTrap::takeDamage(unsigned int amount) {
 	if (_HitPoints == 0) {
-		std::cout << "ClapTrap " << _name << "is already destryed!" << std::endl;
+		std::cout << "ClapTrap " << _name << " is already destryed!" << std::endl;
 		return ;
 	}
 	if (_HitPoints > amount) {
@@ -74,7 +74,7 @@ void ClapTrap::beRepaired(unsigned int amount) {
 			_EnergyPoints--;
 		}
 		else
-			std::cout << "ClapTrap " << _name << "is already fully repaired!" << std::endl;
+			std::cout << "ClapTrap " << _name << " is already fully repaired!" << std::endl;
 	}
 	else
 		std::cout << "ClapTrap " << _name << " has no energy left to attack!" << std::endl;
