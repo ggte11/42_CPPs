@@ -22,27 +22,27 @@ void Harl::error() {
 
 void Harl::complain(std::string level) {
 	for (int i = 0; i < 4; i++) {
-	if (types[i] == level)
-	switch (i)
-	{
-		case (0):
-			std::cout << "[ DEBUG ]" << std::endl;
-			debug();
-			std::cout << std::endl;
-		case (1):
-			std::cout << "[ INFO ]" << std::endl;
-			info();
-			std::cout << std::endl;
-		case (2):
-			std::cout << "[ WARNING ]" << std::endl;
-			warning();
-			std::cout << std::endl;
-		case (3):
-			std::cout << "[ ERROR ]" << std::endl;
-			error();
-			break ;
-		default:
-			std::cout << "[ Probably complaining about insignificant problems ]";
+		if (types[i] == level) {
+			switch (i) {
+				case (0):
+				std::cout << "[ DEBUG ]" << std::endl;
+				debug();
+				std::cout << std::endl;
+				case (1):
+				std::cout << "[ INFO ]" << std::endl;
+				info();
+				std::cout << std::endl;
+				case (2):
+				std::cout << "[ WARNING ]" << std::endl;
+				warning();
+				std::cout << std::endl;
+				case (3):
+				std::cout << "[ ERROR ]" << std::endl;
+				error();
+				break ;
+			}
+			return ;
+		}
 	}
-	}
+	std::cout << "[ Probably complaining about insignificant problems ]";
 }
