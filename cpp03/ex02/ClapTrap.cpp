@@ -74,7 +74,7 @@ void ClapTrap::beRepaired(unsigned int amount) {
 			_EnergyPoints--;
 		}
 		else
-			std::cout << "ClapTrap " << _name << "is already fully repaired!" << std::endl;
+			std::cout << "ClapTrap " << _name << " is already fully repaired!" << std::endl;
 	}
 	else
 		std::cout << "ClapTrap " << _name << " has no energy left to attack!" << std::endl;
