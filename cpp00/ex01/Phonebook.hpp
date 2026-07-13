@@ -6,7 +6,7 @@
 /*   By: mcardoso <mcardoso@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/18 16:32:14 by mcardoso          #+#    #+#             */
-/*   Updated: 2026/06/18 17:51:22 by mcardoso         ###   ########.fr       */
+/*   Updated: 2026/07/13 12:11:22 by mcardoso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 #include <string>
 #include <iomanip>
 #include <sstream>
+#include <cctype>
 #include "Contact.hpp"
 
 class	Phonebook {
@@ -26,6 +27,7 @@ class	Phonebook {
 		void	addContact();
 		void	searchContact();
 		std::string	truncate(const std::string& str);
+		std::string	clean(const std::string& str);
 	private:
 		Contact	Contacts[8];
 		int	index;

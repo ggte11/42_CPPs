@@ -6,7 +6,7 @@
 /*   By: mcardoso <mcardoso@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/18 16:32:11 by mcardoso          #+#    #+#             */
-/*   Updated: 2026/06/22 16:32:42 by mcardoso         ###   ########.fr       */
+/*   Updated: 2026/07/13 12:11:27 by mcardoso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,19 @@ std::string Phonebook::truncate(const std::string& str) {
 	if (str.length() > 10)
 		return str.substr(0, 9) + '.';
 	return str;
+}
+
+std::string Phonebook::clean(const std::string& str) {
+	std::string cleaned;
+
+	for (size_t i = 0; i < str.length(); i++) {
+		unsigned char ch = static_cast<unsigned char>(str[i]);
+		if (std::isprint(ch))
+			cleaned += str[i];
+		else
+			cleaned += ' ';
+	}
+	return cleaned;
 }
 
 void	Phonebook::addContact() {
@@ -79,9 +92,9 @@ void	Phonebook::searchContact() {
 			  << std::setw(10) << "Nickname" << std::endl;
 	for (int i = 0; i < total; i++) {
 		std::cout << std::setw(10) << i + 1 << "|"
-				  << std::setw(10) << truncate(Contacts[i].getFirst()) << "|"
-				  << std::setw(10) << truncate(Contacts[i].getLast()) << "|"
-				  << std::setw(10) << truncate(Contacts[i].getNick()) << std::endl;
+				  << std::setw(10) << truncate(clean(Contacts[i].getFirst())) << "|"
+				  << std::setw(10) << truncate(clean(Contacts[i].getLast())) << "|"
+				  << std::setw(10) << truncate(clean(Contacts[i].getNick())) << std::endl;
 	}
 	while (true) {
 		std::cout << "Enter index: ";
@@ -93,9 +106,9 @@ void	Phonebook::searchContact() {
 		std::cout << "Invalid index. Try again.\n";
 	}
 	index--;
-	std::cout << "First name: " << Contacts[index].getFirst() << std::endl;
-	std::cout << "Last name: " << Contacts[index].getLast() << std::endl;
-	std::cout << "Nickname: " << Contacts[index].getNick() << std::endl;
-	std::cout << "Phone number: " << Contacts[index].getNumber() << std::endl;
-	std::cout << "Darkest secret: " << Contacts[index].getSecret() << std::endl;
+	std::cout << "First name: " << clean(Contacts[index].getFirst()) << std::endl;
+	std::cout << "Last name: " << clean(Contacts[index].getLast()) << std::endl;
+	std::cout << "Nickname: " << clean(Contacts[index].getNick()) << std::endl;
+	std::cout << "Phone number: " << clean(Contacts[index].getNumber()) << std::endl;
+	std::cout << "Darkest secret: " << clean(Contacts[index].getSecret()) << std::endl;
 }
