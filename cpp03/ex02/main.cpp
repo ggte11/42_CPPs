@@ -1,28 +1,28 @@
 #include "ClapTrap.hpp"
 #include "ScavTrap.hpp"
+#include "FragTrap.hpp"
 
 int main()
 {
-	ClapTrap a;
-	ClapTrap b("Claptingon");
+	ClapTrap clap("Clappy");
+	ScavTrap scav("Scavy");
+	FragTrap frag("Fraggy");
 
-	a.attack("Bob");
-	a.takeDamage(3);
-	b.attack("ScaviTrone");
-	a.beRepaired(2);
-	b.takeDamage(5);
-	b.beRepaired(4);
+	clap.attack("target 1");
+	clap.takeDamage(3);
+	clap.beRepaired(2);
+
 	std::cout << std::endl;
+	scav.attack("target 2");
+	scav.guardGate();
+	scav.takeDamage(20);
+	scav.beRepaired(5);
 
-	ScavTrap s1;
-	ScavTrap s2("ScaviTrone");
+	std::cout << std::endl;
+	frag.attack("target 3");
+	frag.highFivesGuys();
+	frag.takeDamage(50);
+	frag.highFivesGuys();
 
-	s1.attack("Claptingon");
-	s1.takeDamage(20);
-	s2.guardGate();
-	s1.beRepaired(5);
-	s2.attack("Claptingon");
-	s2.takeDamage(42);
-	s2.beRepaired(10);
 	return 0;
 }
