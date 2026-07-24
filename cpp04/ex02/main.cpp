@@ -7,17 +7,17 @@
 
 int main()
 {
-	const Animal* meta = new Animal();
+	// const Animal* meta = new Animal();
 	const Animal* cat = new Cat();
 	const Animal* dog = new Dog();
 
-	std::cout << meta->getType() << std::endl;
+	// std::cout << meta->getType() << std::endl;
 	std::cout << cat->getType() << std::endl;
 	std::cout << dog->getType() << std::endl;
-	meta->makeSound();
+	// meta->makeSound();
 	cat->makeSound();
 	dog->makeSound();
-	delete meta;
+	// delete meta;
 	delete cat;
 	delete dog;
 	std::cout << std::endl;
