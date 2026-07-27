@@ -22,7 +22,7 @@ int main()
 	std::cout << std::endl;
 
 	const WrongAnimal* wrongMeta = new WrongAnimal();
-	const WrongAnimal* wrongAnimal = new WrongAnimal();
+	const WrongAnimal* wrongAnimal = new WrongCat();
 
 	std::cout << wrongMeta->getType() << std::endl;
 	std::cout << wrongAnimal->getType() << std::endl;
@@ -31,9 +31,5 @@ int main()
 	delete wrongMeta;
 	delete wrongAnimal;
 	std::cout << std::endl;
-
-	WrongCat wrongCat;
-	wrongCat.makeSound();
-	std::cout << wrongCat.getType() << std::endl;
 	return 0;
 }

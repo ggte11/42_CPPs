@@ -2,6 +2,8 @@
 #include "Cat.hpp"
 #include "Dog.hpp"
 #include "Brain.hpp"
+#include "WrongAnimal.hpp"
+#include "WrongCat.hpp"
 
 int main()
 {
@@ -21,6 +23,17 @@ int main()
 	delete doggy;
 	std::cout << "Husky still thinks: " << husky->getIdeas(0) << std::endl;
 	delete husky;
+
+	std::cout << "------------------Wrong Animal--------------------" << std::endl;
+	const WrongAnimal* wrongMeta = new WrongAnimal();
+	const WrongAnimal* wrongAnimal = new WrongCat();
+
+	std::cout << wrongMeta->getType() << std::endl;
+	std::cout << wrongAnimal->getType() << std::endl;
+	wrongMeta->makeSound();
+	wrongAnimal->makeSound();
+	delete wrongMeta;
+	delete wrongAnimal;
 
 	std::cout << "-------------------------Array of animals------------------------" << std::endl;
 	Animal* creatures[5];
