@@ -24,7 +24,7 @@ int main()
 
 	// std::cout << "------------------Abstract class test--------------------" << std::endl;
 	// Animal a;
-	// Animal *a = new Animal();
+	// Animal *a = new Animal()
 
 	std::cout << "-------------------------Array of animals------------------------" << std::endl;
 	Animal* creatures[5];
