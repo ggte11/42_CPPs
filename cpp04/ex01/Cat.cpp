@@ -5,15 +5,14 @@ Cat::Cat() : Animal("Cat") {
 	brain = new Brain();
 }
 
-Cat::Cat(const Cat &other) : Animal(other.type) {
+Cat::Cat(const Cat &other) : Animal(other.type), brain(new Brain(*other.brain)) {
 	std::cout << "Cat copy constructor called" << std::endl;
-	*this = other;
 }
 
 Cat &Cat::operator=(const Cat &other) {
 	if (this != &other) {
-		this->type = other.type;
-		this->brain = new Brain(*other.brain);
+		type = other.type;
+		*brain = *other.brain;
 	}
 	return	*this;
 }

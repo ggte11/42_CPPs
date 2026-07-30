@@ -5,15 +5,14 @@ Dog::Dog() : Animal("Dog") {
 	brain = new Brain();
 }
 
-Dog::Dog(const Dog &other) : Animal(other.type) {
+Dog::Dog(const Dog &other) : Animal(other.type), brain(new Brain(*other.brain)) {
 	std::cout << "Dog copy constructor called" << std::endl;
-	*this = other;
 }
 
 Dog &Dog::operator=(const Dog &other) {
 	if (this != &other) {
-		this->type = other.type;
-		this->brain = new Brain(*other.brain);
+		type = other.type;
+		*brain = *other.brain;
 	}
 	return	*this;
 }
