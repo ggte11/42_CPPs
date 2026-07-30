@@ -23,7 +23,7 @@ Dog::~Dog() {
 }
 
 void Dog::makeSound() const{
-	std::cout << "Meaww Meaww" << std::endl;
+	std::cout << "Barkk Barkk" << std::endl;
 }
 
 std::string Dog::getIdeas(int i) const {
