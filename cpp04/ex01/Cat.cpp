@@ -11,8 +11,9 @@ Cat::Cat(const Cat &other) : Animal(other.type), brain(new Brain(*other.brain)) 
 
 Cat &Cat::operator=(const Cat &other) {
 	if (this != &other) {
+		delete brain;
 		type = other.type;
-		*brain = *other.brain;
+		brain = new Brain(*other.brain);
 	}
 	return	*this;
 }
