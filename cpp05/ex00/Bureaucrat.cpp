@@ -18,11 +18,11 @@ Bureaucrat::Bureaucrat(std::string name, int grade) : _name(name){
 	}
 	catch (const GradeTooHighException & h) {
 		std::cout << h.high() << std::endl;
-		grade = 1;
+		_grade = 1;
 	}
 	catch (const GradeTooLowException & l) {
 		std::cout << l.low() << std::endl;
-		grade = 150;
+		_grade = 150;
 	}
 }
 
@@ -31,9 +31,8 @@ Bureaucrat::Bureaucrat(const Bureaucrat &other) : _name(other._name) {
 }
 
 Bureaucrat &Bureaucrat::operator=(const Bureaucrat &other) {
-	if (this != &other) {
+	if (this != &other)
 		_grade = other._grade;
-	}
 	return *this;
 }
 
