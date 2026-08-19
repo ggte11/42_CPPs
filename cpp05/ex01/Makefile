@@ -2,7 +2,7 @@ NAME = I_want_to_be_a_bureaucrat
 CXX = c++
 CXXFLAGS = -Wall -Wextra -Werror -std=c++98
 
-SRCS = main.cpp Animal.cpp Cat.cpp Dog.cpp WrongCat.cpp WrongAnimal.cpp Brain.cpp
+SRCS = main.cpp Bureaucrat.cpp Form.cpp
 OBJS = $(SRCS:.cpp=.o)
 
 all: $(NAME)
