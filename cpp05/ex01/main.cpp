@@ -1,18 +1,44 @@
 #include "Bureaucrat.hpp"
+#include "Form.hpp"
+#include <iostream>
 
-int main() {
-	Bureaucrat Average("Normal", 75);
-	Bureaucrat TooHigh("High", -1);
-	Bureaucrat TooLow("Low", 150);
+int main()
+{
+	try
+	{
+		Bureaucrat b("Normal", 0);
+		std::cout << b << std::endl;
 
-	std::cout << Average << std::endl;
-	std::cout << TooHigh << std::endl;
-	std::cout << TooLow << std::endl;
+		Form f("FormA", 75, 1);
+		std::cout << f << std::endl;
 
-	TooHigh.incrementgrade();
-	TooLow.decrementgrade();
+		b.signForm(f);
+		std::cout << f << std::endl;
+	}
+	catch (const std::exception &e)
+	{
+		std::cout << e.what() << std::endl;
+	}
 
-	std::cout << Average << std::endl;
-	std::cout << TooHigh << std::endl;
-	std::cout << TooLow << std::endl;
+	try
+	{
+		Bureaucrat high("High", 0);
+		std::cout << high << std::endl;
+	}
+	catch (const std::exception &e)
+	{
+		std::cout << e.what() << std::endl;
+	}
+
+	try
+	{
+		Bureaucrat low("Low", 151);
+		std::cout << low << std::endl;
+	}
+	catch (const std::exception &e)
+	{
+		std::cout << e.what() << std::endl;
+	}
+
+	return 0;
 }

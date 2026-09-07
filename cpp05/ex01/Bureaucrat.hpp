@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include <string>
+#include "Form.hpp"
 
 class Bureaucrat
 {
@@ -26,6 +27,7 @@ class Bureaucrat
 		int getGrade() const;
 		void incrementgrade();
 		void decrementgrade();
+		void signForm(Form &obj);
 };
 
 std::ostream &operator<<(std::ostream &out, const Bureaucrat &obj);
