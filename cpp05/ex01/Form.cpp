@@ -1,5 +1,4 @@
 #include "Form.hpp"
-#include "Bureaucrat.hpp"
 
 const char *Form::GradeTooHighException::high() const throw() {
 	return ("Grade is to high!");
@@ -12,7 +11,7 @@ const char *Form::GradeTooLowException::low() const throw() {
 Form::Form(std::string name, int grade_sign, int grade_exec) : _name(name), _grade_sign(grade_sign), _grade_exec(grade_exec), _is_signed(false) {
 	if (_grade_exec < 1 || _grade_sign < 1)
 		throw(GradeTooHighException());
-	if (_grade_exec > 150 || grade_sign > 150)
+	if (_grade_exec > 150 || _grade_sign > 150)
 		throw(GradeTooLowException());
 }
 

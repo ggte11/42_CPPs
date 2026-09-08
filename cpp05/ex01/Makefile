@@ -1,4 +1,4 @@
-NAME = I_want_to_be_a_bureaucrat
+NAME = Form_up_maggots
 CXX = c++
 CXXFLAGS = -Wall -Wextra -Werror -std=c++98
 
