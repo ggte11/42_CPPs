@@ -8,6 +8,7 @@
 #include <limits>
 #include <iomanip>
 #include <sstream>
+#include <cerrno>
 
 class ScalarConverter
 {
