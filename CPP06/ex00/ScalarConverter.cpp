@@ -69,10 +69,26 @@ static bool isDouble(const std::string &str, double &out) {
 	return true;
 }
 
-void ScalarConverter::Convert(std::string literal) {
-	if (print_pseudo_literals())
+void ScalarConverter::convert(std::string literal) {
+	if (print_pseudo_literals(literal))
+		return ;
+	char c;
+	int i;
+	float f;
+	double d;
+	if (isChar(literal)) {
+		c = literal[0];
+		std::cout << "char: '" << c << "'" << std::endl;
+		std::cout << "int: " << static_cast<int>(c) << std::endl;
+		std::cout << "float: " << static_cast<float>(c) << ".0f" << std::endl;
+		std::cout << "double: " << static_cast<double>(c) << ".0" << std::endl;
+		return ;
+	}
+	if (isInt(literal, i)) {
+		
+	}
 }
 
 ScalarConverter::~ScalarConverter() {
-
+	
 }
