@@ -9,6 +9,7 @@
 #include <iomanip>
 #include <sstream>
 #include <cerrno>
+#include <cmath>
 
 class ScalarConverter
 {
