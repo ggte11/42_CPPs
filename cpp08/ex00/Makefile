@@ -1,4 +1,4 @@
-NAME = Start_functions
+NAME = Easy_find
 CXX = c++
 CXXFLAGS = -Wall -Wextra -Werror -std=c++98
 

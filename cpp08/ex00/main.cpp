@@ -1,6 +1,9 @@
 #include "easyfind.hpp"
 #include <iostream>
 #include <vector>
+#include <list>
+#include <deque>
+#include <map>
 
 int main(void)
 {
