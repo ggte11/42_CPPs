@@ -1,28 +1,19 @@
-#include "easyfind.hpp"
+#include "Span.hpp"
 #include <iostream>
-#include <vector>
 
 int main(void)
 {
-	std::vector<int> v;
-	v.push_back(10);
-	v.push_back(20);
-	v.push_back(30);
-	v.push_back(40);
-
+	Span sp(5);
+	sp.addNumber(5);
+	sp.addNumber(3);
+	sp.addNumber(17);
+	sp.addNumber(9);
+	sp.addNumber(11);
+	std::cout << "shortest: " << sp.shortestSpan() << std::endl;
+	std::cout << "longest: " << sp.longestSpan() << std::endl;
 	try
 	{
-		std::vector<int>::iterator it = easyfind(v, 30);
-		std::cout << "Found: " << *it << std::endl;
-	}
-	catch (const std::exception &e)
-	{
-		std::cout << e.what() << std::endl;
-	}
-	try
-	{
-		std::vector<int>::iterator it = easyfind(v, 99);
-		std::cout << "Found: " << *it << std::endl;
+		sp.addNumber(42);
 	}
 	catch (const std::exception &e)
 	{
