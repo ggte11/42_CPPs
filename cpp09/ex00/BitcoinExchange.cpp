@@ -12,9 +12,11 @@ BitcoinExchange &BitcoinExchange::operator=(const BitcoinExchange &other) {
 	return *this;
 }
 
+BitcoinExchange::~BitcoinExchange() {}
+
 std::string BitcoinExchange::trim(const std::string &s) {
 	const std::string ws = " \t\r\n";
-	std::string::size_type first = s.find_last_not_of(ws);
+	std::string::size_type first = s.find_first_not_of(ws);
 	if (first == std::string::npos)
 		return "";
 	std::string::size_type last = s.find_last_not_of(ws);
@@ -60,4 +62,73 @@ float BitcoinExchange::getRate(const std::string &date) const {
 		throw std::runtime_error("Error: no rate available for this date.");
 	it--;
 	return it->second;
+}
+
+void BitcoinExchange::loadDatabase(const std::string &csvPath) {
+	std::ifstream file(csvPath.c_str());
+	if (!file.is_open())
+		throw std::runtime_error("Error: could not open database.");
+	std::string line;
+	std::getline(file, line);
+	while (std::getline(file, line)) {
+		std::stringstream stream(line);
+		std::string date;
+		std::string rateText;
+		if (!std::getline(stream, date, ',') || !std::getline(stream, rateText))
+			continue;
+		date = trim(date);
+		rateText = trim(rateText);
+		float rate;
+		if (isValidDate(date) && parseValue(rateText, rate))
+			_data[date] = rate;
+	}
+}
+
+void BitcoinExchange::processInput(const std::string &inputPath) {
+	std::ifstream file(inputPath.c_str());
+	if (!file.is_open()) {
+		std::cout << "Error: could not open file." << std::endl;
+		return;
+	}
+	std::string line;
+	std::getline(file, line);
+	while (std::getline(file, line)) {
+		std::stringstream stream(line);
+		std::string date;
+		std::string valueText;
+		if (!std::getline(stream, date, '|') || !std::getline(stream, valueText)) {
+			std::cout << "Error: bad input => " << line << std::endl;
+			continue;
+		}
+		date = trim(date);
+		valueText = trim(valueText);
+		if (!isValidDate(date)) {
+			std::cout << "Error: bad input => " << line << std::endl;
+			continue;
+		}
+		float value;
+		if (!parseValue(valueText, value)) {
+			std::cout << "Error: bad input => " << line << std::endl;
+			continue;
+		}
+		if (value < 0) {
+			std::cout << "Error: not a positive number." << std::endl;
+			continue;
+		}
+		if (value > 1000) {
+			std::cout << "Error: too large a number." << std::endl;
+			continue;
+		}
+		try
+		{
+			float rate = getRate(date);
+
+			std::cout << date << " => " << value
+				<< " = " << value * rate << std::endl;
+		}
+		catch (const std::exception &e)
+		{
+			std::cout << e.what() << std::endl;
+		}
+	}
 }

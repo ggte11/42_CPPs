@@ -8,10 +8,10 @@
 #include <sstream>
 #include <string>
 #include <cstdlib>
-#include <exception>
 #include <limits>
 #include <ctime>
 #include <cstring>
+#include <stdexcept>
 
 class BitcoinExchange
 {
@@ -26,6 +26,8 @@ public:
 	BitcoinExchange(const BitcoinExchange &other);
 	BitcoinExchange &operator=(const BitcoinExchange &other);
 	~BitcoinExchange();
+	void loadDatabase(const std::string &csvPath);
+	void processInput(const std::string &inputPath);
 };
 
 #endif
