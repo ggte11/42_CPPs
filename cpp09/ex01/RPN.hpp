@@ -4,6 +4,8 @@
 #include <iostream>
 #include <string>
 #include <stack>
+#include <sstream>
+#include <stdexcept>
 
 class RPN
 {
@@ -14,6 +16,8 @@ class RPN
 		RPN(const RPN &other);
 		RPN &operator=(const RPN &other);
 		~RPN();
+		void applyOperation(char operation);
+		void calculate(const std::string &expression);
 };
 
 #endif
