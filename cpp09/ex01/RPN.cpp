@@ -21,19 +21,20 @@ void RPN::applyOperation(char op) {
 	_stack.pop();
 	int left = _stack.top();
 	_stack.pop();
-	if (op == '+')
-		_stack.push(left + right);
-	else if (op == '-')
-		_stack.push(left - right);
-	else if (op == '*')
-		_stack.push(left * right);
-	else if (op == '/') {
-		if (right == 0)
-			throw std::runtime_error("Error: can't divide by 0");
-		_stack.push(left / right);
+	switch (op) {
+		case '+':
+			return _stack.push(left + right);
+		case '-':
+			return _stack.push(left - right);
+		case '*':
+			return _stack.push(left * right);
+		case '/':
+			if (right == 0)
+				throw std::runtime_error("Error: can't divide by 0");
+			return _stack.push(left / right);
+		default:
+			throw std::runtime_error("Error: invalid operator");
 	}
-	else
-		throw std::runtime_error("Error: invalid operator");
 }
 
 void RPN::calculate(const std::string &expression) {
@@ -52,4 +53,7 @@ void RPN::calculate(const std::string &expression) {
 		else
 			throw std::runtime_error("Error: invalid operator");
 	}
+	if (_stack.size() != 1)
+		throw std::runtime_error("Error: invalid expression");
+	std::cout << _stack.top() << std::endl;
 }
