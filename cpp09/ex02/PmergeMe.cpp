@@ -14,3 +14,6 @@ PmergeMe &PmergeMe::operator=(const PmergeMe &other) {
 
 PmergeMe::~PmergeMe() {}
 
+static bool isValidNum(long nb, const std::vector<int> &vec) {
+
+}

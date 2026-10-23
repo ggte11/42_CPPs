@@ -4,6 +4,10 @@
 #include <iostream>
 #include <vector>
 #include <deque>
+#include <string>
+#include <cstdlib>
+#include <cerrno>
+#include <climits>
 
 class PmergeMe
 {

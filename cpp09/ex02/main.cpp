@@ -1,14 +1,14 @@
-#include "RPN.hpp"
+#include "PmergeMe.hpp"
 
 int main(int argc, char **argv) {
 	if (argc != 2) {
-		std::cout << "Error: too many parameters." << std::endl;
+		std::cerr << "Error: too many parameters." << std::endl;
 		return 1;
 	}
 	try
 	{
-		RPN rpn;
-		rpn.calculate(argv[1]);
+		PmergeMe sorter;
+		sorter.sort(argc ,argv);
 	}
 	catch (const std::exception &e)
 	{
