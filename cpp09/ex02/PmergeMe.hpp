@@ -7,7 +7,9 @@
 #include <string>
 #include <cstdlib>
 #include <cerrno>
-#include <climits>
+#include <stdexcept>
+#include <limits>
+#include <sstream>
 
 class PmergeMe
 {
@@ -19,7 +21,10 @@ class PmergeMe
 		PmergeMe(const PmergeMe &other);
 		PmergeMe &operator=(const PmergeMe &other);
 		~PmergeMe();
-		
+		bool isValidInput(int argc, char **argv);
+		void sort(int argc,char **argv);
+		void sortVector();
+		void sortDeque();
 };
 
 #endif
