@@ -10,12 +10,14 @@
 #include <stdexcept>
 #include <limits>
 #include <sstream>
+#include <algorithm>
 
 class PmergeMe
 {
 	private:
 		std::vector<int> _vector;
 		std::deque<int> _deque;
+		std::vector<std::size_t> jacobsthalOrder(std::size_t count) const;
 	public:
 		PmergeMe();
 		PmergeMe(const PmergeMe &other);
