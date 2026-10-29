@@ -11,6 +11,14 @@
 #include <limits>
 #include <sstream>
 #include <algorithm>
+#include <sys/time.h>
+
+struct Pair
+{
+	int smaller;
+	int larger;
+	std::size_t id;
+};
 
 class PmergeMe
 {
@@ -27,6 +35,7 @@ class PmergeMe
 		void sort(int argc,char **argv);
 		void sortVector();
 		void sortDeque();
+		long long getTimestamp() const;
 };
 
 #endif

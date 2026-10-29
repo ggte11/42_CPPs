@@ -1,5 +1,5 @@
 #include "PmergeMe.hpp"
-
+#include <cmath>
 PmergeMe::PmergeMe() {}
 
 PmergeMe::PmergeMe(const PmergeMe &other) : _vector(other._vector), _deque(other._deque) {}
@@ -33,20 +33,34 @@ bool PmergeMe::isValidInput(int argc, char **argv) {
 	return true;
 }
 
-void PmergeMe::sort(int argc,char **argv) {
+void PmergeMe::sort(int argc, char **argv) {
 	if (!isValidInput(argc, argv))
-		throw std::runtime_error("Error: invalid input.");
+		throw std::runtime_error("Error");
 	std::cout << "Before: ";
-	for (std::vector<int>::const_iterator it = _vector.begin(); it != _vector.end(); ++it) {
+	for (std::vector<int>::const_iterator it = _vector.begin();
+		it != _vector.end(); ++it) {
 		std::cout << *it << " ";
 	}
 	std::cout << std::endl;
+	std::size_t count = _vector.size();
+	long long vectorStart = getTimestamp();
 	sortVector();
+	long long vectorEnd = getTimestamp();
+	long long dequeStart = getTimestamp();
+	sortDeque();
+	long long dequeEnd = getTimestamp();
 	std::cout << "After: ";
-	for (std::vector<int>::const_iterator it = _vector.begin(); it != _vector.end(); it++) {
+	for (std::vector<int>::const_iterator it = _vector.begin();
+		it != _vector.end(); ++it) {
 		std::cout << *it << " ";
 	}
 	std::cout << std::endl;
+	std::cout << "Time to process a range of "
+		<< count << " elements with std::vector : "
+		<< vectorEnd - vectorStart << " us" << std::endl;
+	std::cout << "Time to process a range of "
+		<< count << " elements with std::deque : "
+		<< dequeEnd - dequeStart << " us" << std::endl;
 }
 
 std::vector<std::size_t> PmergeMe::jacobsthalOrder(std::size_t count) const {
@@ -80,29 +94,32 @@ void PmergeMe::sortVector() {
 		return ;
 	std::vector<int> src = _vector;
 	std::vector<int> mainChain;
-	std::vector<int> pend;
+	std::vector<Pair> pairs;
 	bool hasOdd = (src.size() % 2 != 0);
 	int oddValue = 0;
 	for (std::size_t i = 0; i + 1 < src.size(); i += 2) {
-		int a = src[i];
-		int b = src[i + 1];
-		if (a < b) {
-			pend.push_back(a);
-			mainChain.push_back(b);
+		int first = src[i];
+		int second = src[i + 1];
+		Pair pair;
+		if (first < second) {
+			pair.smaller = first;
+			pair.larger = second;
 		}
 		else {
-			pend.push_back(b);
-			mainChain.push_back(a);
+			pair.smaller = second;
+			pair.larger = first;
 		}
+		pairs.push_back(pair);
+		mainChain.push_back(pair.larger);
 	}
 	if (hasOdd)
 		oddValue = src.back();
 	_vector = mainChain;
 	sortVector();
 	mainChain = _vector;
-	std::vector<std::size_t> order = jacobsthalOrder(pend.size());
+	std::vector<std::size_t> order = jacobsthalOrder(pairs.size());
 	for (std::size_t i = 0; i < order.size(); i++) {
-		int value = pend[order[i]];
+		int value = pairs[order[i]].smaller;
 		std::vector<int>::iterator pos = std::lower_bound(mainChain.begin(), mainChain.end(), value);
 		mainChain.insert(pos, value);
 	}
@@ -114,5 +131,50 @@ void PmergeMe::sortVector() {
 }
 
 void PmergeMe::sortDeque() {
+	if (_deque.size() < 2)
+		return;
+	std::deque<int> src = _deque;
+	std::deque<int> mainChain;
+	std::vector<Pair> pairs;
+	bool hasOdd = (src.size() % 2 != 0);
+	int oddValue = 0;
+	for (std::size_t i = 0; i + 1 < src.size(); i += 2) {
+		int first = src[i];
+		int second = src[i + 1];
+		Pair pair;
+		if (first < second) {
+			pair.smaller = first;
+			pair.larger = second;
+		}
+		else {
+			pair.smaller = second;
+			pair.larger = first;
+		}
+		pairs.push_back(pair);
+		mainChain.push_back(pair.larger);
+	}
+	if (hasOdd)
+		oddValue = src.back();
+	_deque = mainChain;
+	sortDeque();
+	mainChain = _deque;
+	std::vector<std::size_t> order =
+		jacobsthalOrder(pairs.size());
+	for (std::size_t i = 0; i < order.size(); ++i) {
+		int value = pairs[order[i]].smaller;
+		std::deque<int>::iterator position =
+			std::lower_bound(mainChain.begin(), mainChain.end(), value);
+		mainChain.insert(position, value);
+	}
+	if (hasOdd) {
+		std::deque<int>::iterator position = std::lower_bound(mainChain.begin(), mainChain.end(), oddValue);
+		mainChain.insert(position, oddValue);
+	}
+	_deque = mainChain;
+}
 
+long long PmergeMe::getTimestamp() const {
+	struct timeval time;
+	gettimeofday(&time, NULL);
+	return (static_cast<long long>(time.tv_sec) * 1000000 + time.tv_usec);
 }
